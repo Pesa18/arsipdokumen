@@ -15,6 +15,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 echo $title . " - ";
             } ?><?= $set->site_title ?></title>
 
+
+    <!-- sneatCSS
+    <link rel="stylesheet" href="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/fonts/boxicons.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/css/core.css') ?>" class="template-customizer-core-css">
+    <link rel="stylesheet" href="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/css/theme-default.css') ?>" class="template-customizer-theme-css">
+    <link rel="stylesheet" href="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/css/pages/page-auth.css') ?>">
+    <script src="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/js/helpers.js') ?>"></script>
+    <script src="<?php echo base_url('/assets/js/main.js') ?>"></script>
+    <script src="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/libs/jquery/jquery.js') ?>"></script>
+    <script src="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/libs/popper/popper.js') ?>"></script>
+    <script src="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/js/bootstrap.js') ?>"></script>
+    <script src="<?php echo base_url('/assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
+ -->
+
+
+
+
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?php echo base_url('/assets/staradmin/src/assets/vendors/font-awesome/css/font-awesome.min.css') ?>">
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('/assets/staradmin/src/assets/vendors/mdi/css/materialdesignicons.min.css') ?>" />
