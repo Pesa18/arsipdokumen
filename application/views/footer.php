@@ -1,75 +1,63 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
-<footer class="footer">
-  <div class="container-fluid clearfix">
-    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © <?php echo date('Y'); ?> . All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
-    </span>
+defined('BASEPATH') or exit('No direct script access allowed'); ?>
+</div>
+<!-- Footer -->
+<footer class="content-footer footer bg-footer-theme">
+  <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+    <div class="mb-2 mb-md-0">
+      ©
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      , made with ❤️ by
+      <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+    </div>
+    <div>
+      <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+      <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+      <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
+
+      <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
+    </div>
   </div>
 </footer>
-</div>
-<!-- content-wrapper ends -->
-</div>
-<!-- main-panel ends -->
+<!-- / Footer -->
 
+<div class="content-backdrop fade"></div>
 </div>
-<!-- page-body-wrapper ends -->
+<!-- Content wrapper -->
 </div>
-<!-- container-scroller -->
+<!-- / Layout page -->
+</div>
 
-<!-- plugins:js -->
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+</div>
+<!-- / Layout wrapper -->
 
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/datatables.net/jquery.dataTables.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/select2/select2.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/dropify/dropify.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/jquery-validation/jquery.validate.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/vendors/icheck/icheck.min.js') ?>"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/off-canvas.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/hoverable-collapse.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/misc.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/settings.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/todolist.js') ?>"></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/data-table.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/formpickers.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/select2.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/dropify.js') ?>"></script>
-<script src="<?php echo base_url('/assets/staradmin/src/assets/js/shared/iCheck.js') ?>"></script>
-<script src="<?php echo base_url('/public/js/jquery.form.min.js') ?>"></script>
-<script src="<?php echo base_url('/public/js/jquery.auto-complete.min.js') ?>"></script>
-<script src="<?php echo base_url('/public/js/custom.js') ?>"></script>
-<script src="<?php echo base_url('/public/js/validation.js') ?>"></script>
-<!-- End custom js for this page -->
-<script>
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: true,
-    timer: 5000
-  });
-  <?php if ($message = $this->session->flashdata('success')) { ?>
-    Toast.fire({
-      icon: 'success',
-      title: '<?php echo $message ?>.'
-    })
-  <?php } ?>
-  <?php if ($message = $this->session->flashdata('error')) { ?>
-    Toast.fire({
-      icon: 'error',
-      title: '<?php echo $message ?>.'
-    })
-  <?php } ?>
-</script>
 
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/popper/popper.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/bootstrap.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
+
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/menu.js') ?>"></script>
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/apex-charts/apexcharts.js') ?>"></script>
+
+<!-- Main JS -->
+<script src="<?= base_url('assets/js/main.js') ?>"></script>
+
+<!-- Page JS -->
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>

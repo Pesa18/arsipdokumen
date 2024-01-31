@@ -213,98 +213,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<!-- Title -->
 
 	<div class="card-body">
+		<div id="data-grid"></div>
 
-		<!--<?php
-			//if ($this->session->flashdata('zz')) {
-			//echo '<div class="alert alert-success" role="alert">' . $this->session->flashdata('zz') . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			//<span aria-hidden="true">&times;</span>
-			//</button></div>';
-			//}
-			?>-->
-		<!-- /.row -->
-		<!-- Page Features -->
-		<div class="table-responsive">
-			<?php if (!empty($data)) { ?>
-				<table id="order-listing2" class="table table-bordered table-hover" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>No.Arsip</th>
-							<th>Nama Dokumen</th>
-							<th>Tanggal</th>
-							<th>User</th>
-							<th>File</th>
-							<th class="width-sm"></th>
-							<th class="width-sm"></th>
-							<th class="width-sm"></th>
-							<th class="width-sm"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($data as $a) {
-							echo "<tr>";
-							echo "<td>" . $a['noarsip'] . "</td>";
-							echo "<td>" . $a['nama_dokumen'] . "</td>";
-							echo "<td>" . $a['tanggal'] . "</td>";
-							echo "<td align=\"center\"><span class=\"badge badge-primary\">" . $a['username'] . "</span></td>";
-							if ($a['file'] == "") {
-								echo "<td></td>";
-							} else {
-								echo "<td align=\"center\"><a href='" . base_url('files/' . $a['file']) . "' target='_blank'><i class='fa fa-file fa-lg' aria-hidden='true'></i></a></td>";
-							}
-							echo "<td align=\"center\"><a href='" . site_url('home/view/' . encrypt_url($a['id'])) . "' ><i class=\"fa fa-search fa-lg text-primary\"></i></a></td>";
-							echo "<td align=\"center\"><a href=\"#arsip-" . encrypt_url($a['id']) . "\" data-toggle=\"modal\" data-target=\"#arsip-" . encrypt_url($a['id']) . "\"><i class='fa fa-qrcode fa-lg' aria-hidden='true'></i></a>
-							<div class=\"modal fade\" id=\"arsip-" . encrypt_url($a['id']) . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"arsipLabel\" aria-hidden=\"true\">
-                      <div class=\"modal-dialog\" role=\"document\">
-                        <div class=\"modal-content\">
-                          <div class=\"modal-header py-2\">
-                            <h5 class=\"modal-title\" id=\"arsipLabel\">QR Code Untuk Publik</h5>
-                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
-                              <span aria-hidden=\"true\">&times;</span>
-                            </button>
-                          </div>
-                          <div class=\"modal-body\">
-                            <img src=" . base_url('public/images/' . $a['idarsip'] . '.png') . " alt=\"\" style=\"width: 50%;min-width: 50%;height:50%;border-radius: 0;\">
-							<div>
-							<p>" . $a['nama_dokumen'] . "<br/>
-							No. " . $a['noarsip'] . "</p>
-							<a href=" . base_url('dokumen/detail/' . $a['idarsip'] . '') . " target=\"_blank\">Buka Link</a></div>
-                          </div>
-                          <div class=\"modal-footer\">
-                            <button type=\"button\" class=\"btn btn-light\" data-dismiss=\"modal\">Tutup</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-							</td>";
-							echo "<td align=\"center\">";
-							if (isset($_SESSION['akses_modul']['entridata']) && $_SESSION['akses_modul']['entridata'] == 'on') {
-								echo "<a href='" . site_url('/admin/vedit/' . encrypt_url($a['id'])) . "'><i class='fa fa-pencil fa-lg text-primary' aria-hidden='true'></i></a>";
-							}
-							echo "</td>";
-							echo "<td align=\"center\">";
-							if (isset($_SESSION['akses_modul']['entridata']) && $_SESSION['akses_modul']['entridata'] == 'on') {
-								echo "<a class='deldata' id='" . $a['id'] . "' href='#' data-toggle=\"modal\" data-target=\"#deldata\"><i class=\"fa fa-trash fa-lg text-danger\"></i></a>";
-							}
-							echo "</td>";
-							echo "</tr>";
-						} ?>
 
-					</tbody>
-				</table>
-			<?php
-			} else { ?>
-				<div class="text-center">
-					<img class="img-fluid" src="<?= base_url('public/no-data.png') ?>" alt="Tidak ada Data">
-				</div>
-			<?php } ?>
-		</div><!-- table responsive -->
 
-		<div class="mt-2">
-			<?php
-			echo $pages;
-			?>
-		</div>
-		<!-- /.row -->
 	</div>
 </div>
 
@@ -330,3 +242,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script>
+	var data = JSON.parse(`<?= json_encode($data); ?>`)
+
+	$(() => {
+
+		var table = $('#data-grid').dxDataGrid({
+			dataSource: data,
+			showBorders: true,
+			columns: ['id', ]
+
+		}).dxDataGrid("instance");
+	})
+
+	console.log(data);
+</script>

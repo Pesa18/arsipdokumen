@@ -26,7 +26,7 @@ class Admin extends CI_Controller
         $data['set'] = $this->crud->get('pengaturan', array('id_pengaturan' => '1'))->row();
         $this->load->view('header', $data);
         $this->load->view($nview, $data);
-        $this->load->view('footer');
+        $this->load->view('footer_2');
     }
 
     /**
