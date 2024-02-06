@@ -58,6 +58,9 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script>
+
+</script>
 </body>
 
 </html>

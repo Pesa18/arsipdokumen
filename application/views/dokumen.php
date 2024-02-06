@@ -6,12 +6,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<div class="col-12">
 		<div class="page-header">
 			<h3 class="page-title mb-0">Dokumen</h3>
-			<div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
-				<div class="quick-links ml-auto">
+			<div class="row justify-content-end mb-2">
+				<div class="col-4">
 					<a href="#" role="button" data-toggle="modal" data-target="#advanced-search" aria-expanded="false" aria-controls="advanced-search" class="nav-link btn btn-secondary btn-sm mr-2"><i class="fa fa-search"></i> Pencarian Lanjut</a>
-					<a class="nav-link btn btn-success btn-sm" href="<?php echo site_url('/home/dl') . ($_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '') ?>"><i class="fa fa-file-excel-o"></i> Ekspor ke Excel (XLS)</a>
 				</div>
+				<div class="col-4">
+					<a class="nav-link btn btn-success btn-sm" href="<?php echo site_url('/home/dl') . ($_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : '') ?>"><i class="fa fa-file-excel-o"></i> Ekspor ke Excel (XLS)</a>
+
+				</div>
+
 			</div>
+
 		</div>
 	</div>
 </div>
@@ -282,11 +287,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						.appendTo(container);
 				}
 			}, {
-				dataField: "id",
+				dataField: "url",
 				caption: "File",
 				cellTemplate(container, options) {
+					var site_url = "<?= site_url() ?>"
+
 					$("<a/>", {
-						href: '<?= site_url("home/view/" . encrypt_url("'+options.text+'")) ?>',
+						href: `${site_url}home/view/${options.text}`,
 						html: $("<i/>", {
 							class: "bx bx-file-find" // Kelas untuk elemen <i>
 						})

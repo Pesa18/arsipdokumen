@@ -290,7 +290,16 @@ class Home extends CI_Controller
 		//echo($q); die();
 
 		$hsl = $this->db->query($q);
+
 		$data['data'] = $hsl->result_array();
+		foreach ($data['data'] as &$row) {
+			// Misalnya, Anda memiliki kolom 'id' dalam setiap baris
+			$id = $row['id'];
+
+			// Lakukan sesuatu dengan $id dan tambahkan kunci dan nilai baru ke dalam array
+			// Gantilah dengan nilai yang sesuai
+			$row['url'] = encrypt_url($id);
+		}
 
 		$jmldata = $this->db->query($q2)->row()->jmldata;
 		$data['jml'] = $jmldata;
@@ -337,7 +346,8 @@ class Home extends CI_Controller
 		$data['pages'] = $this->pagination->create_links();
 		$data["title"] = "Data Dokumen";
 
-		$this->__output('dokumen', $data);
+
+		$this->__output_test('dokumen_1', $data);
 	}
 
 	public function jsonDokumenData()
@@ -550,7 +560,7 @@ class Home extends CI_Controller
 
 		if (is_numeric($id)) {
 			$this->session->set_flashdata('error', 'Url Hanya Bisa Diakses Setelah Dienkripsi');
-			redirect('/home');
+			redirect('/404');
 		}
 
 
