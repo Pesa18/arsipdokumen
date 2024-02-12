@@ -34,16 +34,11 @@
 <body>
   <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
-      <div class="col-lg">
-
-        <div class="row">
-          <div class="authentication-inner">
-            <!-- Register -->
-
-
-
-            <div class="card">
-              <div class="card-body">
+      <div class="col-lg-10">
+        <div class="authentication-inner ">
+          <div class="card">
+            <div class="col-lg-12 row mx-auto">
+              <div class="p-5 col-lg-6">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
                   <a href="index.html" class="app-brand-link gap-2">
@@ -121,11 +116,19 @@
 
 
               </div>
-            </div>
-            <!-- /Register -->
-          </div>
 
+              <div class="col-lg-6 py-2">
+                <div class="container rounded bg-primary " style="height: 100%;">
+                  asdadasd
+                </div>
+              </div>
+            </div>
+
+
+          </div>
         </div>
+
+
       </div>
 
     </div>
