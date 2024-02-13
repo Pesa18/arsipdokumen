@@ -347,7 +347,7 @@ class Home extends CI_Controller
 		$data["title"] = "Data Dokumen";
 
 
-		$this->__output_test('dokumen_1', $data);
+		$this->__output('dokumen', $data);
 	}
 
 	public function jsonDokumenData()

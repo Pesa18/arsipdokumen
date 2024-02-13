@@ -280,6 +280,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}, {
 				dataField: "username",
 				caption: "User",
+				width: 'auto',
 				cellTemplate(container, options) {
 					$("<div/>")
 						.addClass("badge rounded-pill bg-primary")
@@ -295,10 +296,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					$("<a/>", {
 						href: `${site_url}home/view/${options.text}`,
 						html: $("<i/>", {
-							class: "bx bx-file-find" // Kelas untuk elemen <i>
+							class: "bx bx-file-find",
+							style: "font-size:30px" // Kelas untuk elemen <i>
 						})
 					}).appendTo(container);
 				}
+			}, {
+				dataField: ''
 			}]
 
 		}).dxDataGrid("instance");

@@ -34,7 +34,7 @@
 <body>
   <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
-      <div class="col-lg-10">
+      <div class="col-lg-8">
         <div class="authentication-inner ">
           <div class="card">
             <div class="col-lg-12 row mx-auto">
@@ -76,7 +76,7 @@
                         </g>
                       </svg>
                     </span>
-                    <span class="app-brand-text demo text-body fw-bolder">E-Arsip</span>
+                    <span class="app-brand-text demo text-body fw-bolder">SINTA</span>
                   </a>
                 </div>
                 <!-- /Logo -->
@@ -106,11 +106,11 @@
                   <div class="mb-3">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="remember-me" />
-                      <label class="form-check-label" for="remember-me"> Remember Me </label>
+                      <label class="form-check-label" for="remember-me"> Ingat saya </label>
                     </div>
                   </div>
                   <div class="mb-3">
-                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                    <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
                   </div>
                 </form>
 
@@ -118,8 +118,8 @@
               </div>
 
               <div class="col-lg-6 py-2">
-                <div class="container rounded bg-primary " style="height: 100%;">
-                  asdadasd
+                <div class="container rounded " style="height: 100%; background-image: url('<?= base_url('assets/sneatadmin/src/assets/vendors/image/arsip-digital.jpg') ?>'); background-size: cover;">
+
                 </div>
               </div>
             </div>
