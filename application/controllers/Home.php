@@ -267,26 +267,24 @@ class Home extends CI_Controller
 
 		/* berdasarkan username */
 
-		if ($this->session->tipe == "admin") {
-			$q .= " LIMIT $this->data_per_page ";
-		} else if ($this->session->tipe == "user") {
-			$q .= " and a.username='" . $_SESSION['username'] . "' LIMIT $this->data_per_page ";
+		if ($this->session->tipe == "user") {
+			$q .= " and a.username='" . $_SESSION['username'] . "' ";
 		} else {
 		}
 
 
-		$data['current_page'] = 1;
-		if ($offset >= $this->data_per_page) {
-			$data['current_page'] = floor(($offset + $this->data_per_page) / $this->data_per_page);
-		}
-		/*
-		if ($page<2) {
-			$offset = 0;
-		} else {
-			$offset = ($page*$this->data_per_page)-$this->data_per_page;
-		}
-		*/
-		if ($offset > 0) $q .= "OFFSET $offset";
+		// $data['current_page'] = 1;
+		// if ($offset >= $this->data_per_page) {
+		// 	$data['current_page'] = floor(($offset + $this->data_per_page) / $this->data_per_page);
+		// }
+		// /*
+		// if ($page<2) {
+		// 	$offset = 0;
+		// } else {
+		// 	$offset = ($page*$this->data_per_page)-$this->data_per_page;
+		// }
+		// */
+		// if ($offset > 0) $q .= "OFFSET $offset";
 		//echo($q); die();
 
 		$hsl = $this->db->query($q);
@@ -323,27 +321,7 @@ class Home extends CI_Controller
 		$hsl = $this->db->query($q);
 		$data['med'] = $hsl->result_array();
 
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('/home/search/');
-		$config['reuse_query_string'] = true;
-		$config['total_rows'] = $jmldata;
-		$config['per_page'] = $this->data_per_page;
-		$config['num_tag_open'] = '<li class="page-item page-link">';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="javascript: void(0)" disabled>';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['next_tag_open'] = '<li class="page-item page-link">';
-		$config['next_tag_close'] = '</li>';
-		$config['prev_tag_open'] = '<li class="page-item page-link">';
-		$config['prev_tag_close'] = '</li>';
-		$config['first_tag_open'] = '<li class="page-item page-link">';
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_open'] = '<li class="page-item page-link">';
-		$config['last_tag_close'] = '</li>';
-		$config['full_tag_open'] = '<ul class="pagination">';
-		$config['full_tag_close'] = '</ul>';
-		$this->pagination->initialize($config);
-		$data['pages'] = $this->pagination->create_links();
+
 		$data["title"] = "Data Dokumen";
 
 

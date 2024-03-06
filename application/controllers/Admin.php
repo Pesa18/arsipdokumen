@@ -1047,8 +1047,10 @@ class Admin extends CI_Controller
     {
         $username = $this->__sanitizeString($this->input->post('username'));
         $q = "SELECT username FROM master_user WHERE username='$username'";
-        $hsl = $this->db->query($q)->row_array();
-        if ($hsl['username'] == $username) {
+        $hsl = $this->db->query($q)->num_rows();
+        // var_dump($hsl > 1);
+        // die();
+        if ($hsl > 0) {
             echo json_encode(array('msg' => 'error'));
         } else {
             echo json_encode(array('msg' => 'ok'));
@@ -1102,6 +1104,9 @@ class Admin extends CI_Controller
             $password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
         }
         $tipe = $this->__sanitizeString($this->input->post('tipe'));
+
+        var_dump($tipe);
+        die();
         $akses_klas = $this->__sanitizeString($this->input->post('akses_klas'));
         $akses_modul = json_encode($this->input->post('modul'));
         $id = $this->__sanitizeString($this->input->post('id'));

@@ -6,10 +6,10 @@
  *
  */
 
-$(document).ready(function() {
+$(document).ready(function () {
 	var url = $(location).attr("href");
 	var segments = url.split("/");
- 
+
 	//console.log(base_url);
 	//console.log(site_url);
 
@@ -18,28 +18,28 @@ $(document).ready(function() {
 		maxDate: "0",
 		changeMonth: true,
 		changeYear: true,
-		format: "yyyy-mm-dd"
+		format: "yyyy-mm-dd",
 	});
 	$("#tgl_pinjam").datepicker({
 		todayHighlight: true,
 		maxDate: "0",
 		changeMonth: true,
 		changeYear: true,
-		format: "yyyy-mm-dd"
+		format: "yyyy-mm-dd",
 	});
 	$("#tgl_haruskembali").datepicker({
 		todayHighlight: true,
 		changeMonth: true,
 		changeYear: true,
-		format: "yyyy-mm-dd"
+		format: "yyyy-mm-dd",
 	});
 
 	/** Fungsi untuk menghapus data arsip */
-	$(".deldata").click(function() {
+	$(".deldata").click(function () {
 		var d = $(this).attr("id");
 		$("#deliddata").val(d);
 	});
-	$("#deldatago").on("click", function() {
+	$("#deldatago").on("click", function () {
 		$("#fdeldata").submit();
 	});
 	$("#fdeldata").ajaxForm({ success: deldata });
@@ -50,11 +50,11 @@ $(document).ready(function() {
 	}
 
 	/** Fungsi untuk menghapus data sirkulasi arsip */
-	$(".sdeldata").click(function() {
+	$(".sdeldata").click(function () {
 		var d = $(this).attr("id");
 		$("#deliddata").val(d);
 	});
-	$("#sdeldatago").on("click", function() {
+	$("#sdeldatago").on("click", function () {
 		$("#fsdeldata").submit();
 	});
 	$("#fsdeldata").ajaxForm({ success: sdeldata });
@@ -65,11 +65,11 @@ $(document).ready(function() {
 	}
 
 	/** Fungsi untuk mengembalikan arsip dalam sirkulasi */
-	$(".kemdata").click(function() {
+	$(".kemdata").click(function () {
 		var d = $(this).attr("id");
 		$("#kemid").val(d);
 	});
-	$("#kemarsipgo").on("click", function() {
+	$("#kemarsipgo").on("click", function () {
 		$("#fkemarsip").submit();
 	});
 	$("#fkemarsip").ajaxForm({ success: kembdata });
@@ -80,7 +80,7 @@ $(document).ready(function() {
 	}
 
 	/** Fungsi untuk menghapus file attachment arsip */
-	$("#delfilego").on("click", function() {
+	$("#delfilego").on("click", function () {
 		$("#fdelfile").submit();
 	});
 	$("#fdelfile").ajaxForm({ success: delfile });
@@ -97,29 +97,29 @@ $(document).ready(function() {
 			type: "POST",
 			url: site_url + "/admin/reloaduser/",
 			cache: false,
-			success: function(html) {
+			success: function (html) {
 				$("#divtabeluser").html(html);
-			}
+			},
 		});
 	}
 	if ($("#divtabeluser").length > 0) {
 		// reloaduser();
 	}
-	$("#divtabeluser").on("click", ".deluser", function() {
+	$("#divtabeluser").on("click", ".deluser", function () {
 		var d = $(this).attr("id");
 		$("#deliduser").val(d);
 	});
 
-	$("#delusergo").on("click", function() {
+	$("#delusergo").on("click", function () {
 		$("#fdeluser").submit();
-	}); 
+	});
 	$("#fdeluser").ajaxForm({ success: deluser });
 	function deluser() {
 		alert("Data telah sukses dihapus");
 		reloaduser();
 		$("#deluser").modal("hide");
 	}
-	$("#editusergo").on("click", function() {
+	$("#editusergo").on("click", function () {
 		$("#feduser").submit();
 	});
 	$("#feduser").ajaxForm({ success: eduser });
@@ -130,21 +130,23 @@ $(document).ready(function() {
 		$("#edituser").modal("hide");
 	}
 
-	$("#addusergo").on("click", function() {
+	$("#addusergo").on("click", function () {
 		var d = $("#username").val();
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/cekuser/",
 			data: "username=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
+				console.log(ahtml);
+
 				html = jQuery.parseJSON(ahtml);
 				if (html.msg == "ok") {
 					$("#fadduser").submit();
 				} else {
 					alert("username sudah terpakai!");
 				}
-			}
+			},
 		});
 	});
 	$("#fadduser").ajaxForm({ success: adduser });
@@ -164,14 +166,14 @@ $(document).ready(function() {
 		$("#fadduser")[0].reset();
 	}
 
-	$("#divtabeluser").on("click", ".eduser", function() {
+	$("#divtabeluser").on("click", ".eduser", function () {
 		var d = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/auser/",
 			data: "id=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
 				$("#feduser")[0].reset();
 				$("#eusername").val(html.username);
@@ -197,7 +199,7 @@ $(document).ready(function() {
 						if (akses_modul.import == "on") $("#emodul9").prop("checked", true);
 					}
 				}
-			}
+			},
 		});
 	});
 	//////////////////////
@@ -207,20 +209,20 @@ $(document).ready(function() {
 			type: "POST",
 			url: site_url + "/admin/reloadkode/",
 			cache: false,
-			success: function(html) {
+			success: function (html) {
 				$("#divtabelkode").html(html);
-			}
+			},
 		});
 	}
 	if ($("#divtabelkode").length > 0) {
 		//reloadkode();
 	}
-	$("#divtabelkode").on("click", ".delkode", function() {
+	$("#divtabelkode").on("click", ".delkode", function () {
 		var d = $(this).attr("id");
 		$("#delidkode").val(d);
 	});
 
-	$("#delkodego").on("click", function() {
+	$("#delkodego").on("click", function () {
 		$("#fdelkode").submit();
 	});
 	$("#fdelkode").ajaxForm({ success: delkode });
@@ -229,7 +231,7 @@ $(document).ready(function() {
 		reloadkode();
 		$("#delkode").modal("hide");
 	}
-	$("#editkodego").on("click", function() {
+	$("#editkodego").on("click", function () {
 		$("#fedkode").submit();
 	});
 	$("#fedkode").ajaxForm({ success: edkode });
@@ -239,7 +241,7 @@ $(document).ready(function() {
 		$("#editkode").modal("hide");
 	}
 
-	$("#addkodego").on("click", function() {
+	$("#addkodego").on("click", function () {
 		$("#faddkode").submit();
 	});
 	$("#faddkode").ajaxForm({ success: addkode });
@@ -250,20 +252,20 @@ $(document).ready(function() {
 		$("#faddkode")[0].reset();
 	}
 
-	$("#divtabelkode").on("click", ".edkode", function() {
+	$("#divtabelkode").on("click", ".edkode", function () {
 		var d = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/akode/",
 			data: "id=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
 				$("#ekode").val(html.kode);
 				$("#enama").val(html.nama);
 				$("#eretensi").val(html.retensi);
 				$("#edidkode").val(html.id);
-			}
+			},
 		});
 	});
 
@@ -273,19 +275,19 @@ $(document).ready(function() {
 			type: "POST",
 			url: site_url + "/admin/reloadpenc",
 			cache: false,
-			success: function(html) {
+			success: function (html) {
 				$("#divtabelpenc").html(html);
-			}
+			},
 		});
 	}
 	if ($("#divtabelpenc").length > 0) {
 		// reloadpenc();
 	}
-	$("#divtabelpenc").on("click", ".delpenc", function() {
+	$("#divtabelpenc").on("click", ".delpenc", function () {
 		var d = $(this).attr("id");
 		$("#delidpenc").val(d);
 	});
-	$("#delpencgo").on("click", function() {
+	$("#delpencgo").on("click", function () {
 		$("#fdelpenc").submit();
 	});
 	$("#fdelpenc").ajaxForm({ success: delpenc });
@@ -296,7 +298,7 @@ $(document).ready(function() {
 	}
 
 	// AJAX untuk edit data pencipta
-	$("#editpencgo").on("click", function() {
+	$("#editpencgo").on("click", function () {
 		$("#fedpenc").submit();
 	});
 	$("#fedpenc").ajaxForm({ success: edpenc });
@@ -307,7 +309,7 @@ $(document).ready(function() {
 	}
 
 	// AJAX untuk tambah data pencipta
-	$("#addpencgo").on("click", function() {
+	$("#addpencgo").on("click", function () {
 		// alert($('#faddpenc').serialize());
 		var form = $("#faddpenc");
 		$.post(form.attr("action"), form.serialize()).done(addpenc);
@@ -319,18 +321,18 @@ $(document).ready(function() {
 		reloadpenc();
 	}
 
-	$("#divtabelpenc").on("click", ".edpenc", function() {
+	$("#divtabelpenc").on("click", ".edpenc", function () {
 		var d = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/apenc/",
 			data: "id=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
 				$("#enama").val(html.nama_pencipta);
 				$("#edidpenc").val(html.id);
-			}
+			},
 		});
 	});
 
@@ -340,19 +342,19 @@ $(document).ready(function() {
 			type: "POST",
 			url: site_url + "/admin/reloadpeng",
 			cache: false,
-			success: function(html) {
+			success: function (html) {
 				$("#divtabelpeng").html(html);
-			}
+			},
 		});
 	}
 	if ($("#divtabelpeng").length > 0) {
 		// reloadpeng();
 	}
-	$("#divtabelpeng").on("click", ".delpeng", function() {
+	$("#divtabelpeng").on("click", ".delpeng", function () {
 		var d = $(this).attr("id");
 		$("#delidpeng").val(d);
 	});
-	$("#delpenggo").on("click", function() {
+	$("#delpenggo").on("click", function () {
 		$("#fdelpeng").submit();
 	});
 	$("#fdelpeng").ajaxForm({ success: delpeng });
@@ -361,7 +363,7 @@ $(document).ready(function() {
 		$("#delpeng").modal("hide");
 		reloadpeng();
 	}
-	$("#editpenggo").on("click", function() {
+	$("#editpenggo").on("click", function () {
 		$("#fedpeng").submit();
 	});
 	$("#fedpeng").ajaxForm({ success: edpeng });
@@ -370,7 +372,7 @@ $(document).ready(function() {
 		$("#editpeng").modal("hide");
 		reloadpeng();
 	}
-	$("#addpenggo").on("click", function() {
+	$("#addpenggo").on("click", function () {
 		$("#faddpeng").submit();
 	});
 	$("#faddpeng").ajaxForm({ success: addpeng });
@@ -380,18 +382,18 @@ $(document).ready(function() {
 		$("#faddpeng")[0].reset();
 		reloadpeng();
 	}
-	$("#divtabelpeng").on("click", ".edpeng", function() {
+	$("#divtabelpeng").on("click", ".edpeng", function () {
 		var d = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/apeng/",
 			data: "id=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
 				$("#enama").val(html.nama_pengolah);
 				$("#edidpeng").val(html.id);
-			}
+			},
 		});
 	});
 
@@ -401,19 +403,19 @@ $(document).ready(function() {
 			type: "POST",
 			url: site_url + "/admin/reloadlok",
 			cache: false,
-			success: function(html) {
+			success: function (html) {
 				$("#divtabellok").html(html);
-			}
+			},
 		});
 	}
 	if ($("#divtabellok").length > 0) {
 		// reloadlok();
 	}
-	$("#divtabellok").on("click", ".dellok", function() {
+	$("#divtabellok").on("click", ".dellok", function () {
 		var d = $(this).attr("id");
 		$("#delidlok").val(d);
 	});
-	$("#dellokgo").on("click", function() {
+	$("#dellokgo").on("click", function () {
 		$("#fdellok").submit();
 	});
 	$("#fdellok").ajaxForm({ success: dellok });
@@ -422,7 +424,7 @@ $(document).ready(function() {
 		$("#dellok").modal("hide");
 		reloadlok();
 	}
-	$("#editlokgo").on("click", function() {
+	$("#editlokgo").on("click", function () {
 		$("#fedlok").submit();
 	});
 	$("#fedlok").ajaxForm({ success: edlok });
@@ -431,7 +433,7 @@ $(document).ready(function() {
 		$("#editlok").modal("hide");
 		reloadlok();
 	}
-	$("#addlokgo").on("click", function() {
+	$("#addlokgo").on("click", function () {
 		$("#faddlok").submit();
 	});
 	$("#faddlok").ajaxForm({ success: addlok });
@@ -441,18 +443,18 @@ $(document).ready(function() {
 		$("#faddlok")[0].reset();
 		reloadlok();
 	}
-	$("#divtabellok").on("click", ".edlok", function() {
+	$("#divtabellok").on("click", ".edlok", function () {
 		var d = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/alok/",
 			data: "id=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
 				$("#enama").val(html.nama_lokasi);
 				$("#edidlok").val(html.id);
-			}
+			},
 		});
 	});
 
@@ -462,19 +464,19 @@ $(document).ready(function() {
 			type: "POST",
 			url: site_url + "/admin/reloadmed",
 			cache: false,
-			success: function(html) {
+			success: function (html) {
 				$("#divtabelmed").html(html);
-			}
+			},
 		});
 	}
 	if ($("#divtabelmed").length > 0) {
 		// reloadmed();
 	}
-	$("#divtabelmed").on("click", ".delmed", function() {
+	$("#divtabelmed").on("click", ".delmed", function () {
 		var d = $(this).attr("id");
 		$("#delidmed").val(d);
 	});
-	$("#delmedgo").on("click", function() {
+	$("#delmedgo").on("click", function () {
 		$("#fdelmed").submit();
 	});
 	$("#fdelmed").ajaxForm({ success: delmed });
@@ -483,7 +485,7 @@ $(document).ready(function() {
 		$("#delmed").modal("hide");
 		reloadmed();
 	}
-	$("#editmedgo").on("click", function() {
+	$("#editmedgo").on("click", function () {
 		$("#fedmed").submit();
 	});
 	$("#fedmed").ajaxForm({ success: edmed });
@@ -492,7 +494,7 @@ $(document).ready(function() {
 		$("#editmed").modal("hide");
 		reloadmed();
 	}
-	$("#addmedgo").on("click", function() {
+	$("#addmedgo").on("click", function () {
 		$("#faddmed").submit();
 	});
 	$("#faddmed").ajaxForm({ success: addmed });
@@ -502,18 +504,18 @@ $(document).ready(function() {
 		$("#faddmed")[0].reset();
 		reloadmed();
 	}
-	$("#divtabelmed").on("click", ".edmed", function() {
+	$("#divtabelmed").on("click", ".edmed", function () {
 		var d = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/amed/",
 			data: "id=" + d,
 			cache: false,
-			success: function(ahtml) {
+			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
 				$("#enama").val(html.nama_media);
 				$("#edidmed").val(html.id);
-			}
+			},
 		});
 	});
 
@@ -524,28 +526,28 @@ $(document).ready(function() {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 	}
 
-	$(".trigger-submit").on("click", function(e) {
+	$(".trigger-submit").on("click", function (e) {
 		$("#singlebutton").trigger("click");
 	});
 
 	var xhr;
-	$("input.xhr").each(function() {
+	$("input.xhr").each(function () {
 		var obj = $(this);
 		obj.autoComplete({
 			minChars: 3,
-			source: function(term, response) {
+			source: function (term, response) {
 				// try { xhr.abort(); } catch(e){}
 				xhr = $.getJSON(
 					obj.attr("data-xhr") + "/" + term,
 					{ q: term },
-					function(data) {
+					function (data) {
 						response(data);
 					}
 				);
 			},
-			renderItem: function(item, search) {
+			renderItem: function (item, search) {
 				// convert ke array
-				var arr = Object.keys(item).map(function(k) {
+				var arr = Object.keys(item).map(function (k) {
 					return item[k];
 				});
 				return (
@@ -555,7 +557,7 @@ $(document).ready(function() {
 					arr[0] +
 					"</div>"
 				);
-			}
+			},
 		});
 	});
 });

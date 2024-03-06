@@ -25,7 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<div class="card-header py-3">
 		<div class="w-100 d-md-flex flex-md-wrap">
 			<div class="quick-links">
-				<a href="<?= site_url('/admin/entr'); ?>" role="button" aria-expanded="false" aria-controls="advanced-search" class="nav-link btn btn-primary btn-sm mr-2"><i class="menu-icon mdi mdi-file-document-box-plus"></i> Entri Baru</a>
+				<a href="<?= site_url('/admin/entr'); ?>" role="button" aria-expanded="false" aria-controls="advanced-search" class="nav-link btn btn-primary btn-sm mr-2"><i class="bx bx-folder-plus"></i> Entri Baru</a>
 			</div>
 		</div>
 	</div>
@@ -225,6 +225,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 </div>
 
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel1">QR Dokumen</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="qr-code" class="d-flex flex-column align-items-center justify-content-center"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 <div class="modal fade" id="deldata">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -250,6 +265,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <script>
 	var data = JSON.parse(`<?= json_encode($data); ?>`)
+	var session = JSON.parse(`<?= json_encode($_SESSION); ?>`)
+	console.log(session);
 
 	$(() => {
 
@@ -291,18 +308,74 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				dataField: "url",
 				caption: "File",
 				cellTemplate(container, options) {
-					var site_url = "<?= site_url() ?>"
+					var site_url = "<?= site_url() ?>";
+					var base_url = "<?= base_url() ?>";
 
-					$("<a/>", {
-						href: `${site_url}home/view/${options.text}`,
-						html: $("<i/>", {
-							class: "bx bx-file-find",
-							style: "font-size:30px" // Kelas untuk elemen <i>
-						})
+					$("<div/>", {
+						class: "d-flex flex-row justify-content-center",
+						html: [$("<a/>", {
+							href: `${base_url}files/${options.row.data.file}`,
+							html: $("<i/>", {
+								class: "bx bx-file-find mx-3",
+								style: "font-size:25px"
+							}).attr({
+								"data-bs-toggle": "tooltip",
+								"data-bs-offset": "0,4",
+								"data-bs-placement": "top",
+								"data-bs-html": "true",
+								"title": "<i class='bx bx-bell bx-xs'></i> <span>Tooltip on top</span>"
+							}),
+						}), $("<a/>", {
+							href: `${site_url}home/view/${options.text}`,
+							html: $("<i/>", {
+								class: "bx bx-search mx-3",
+								style: "font-size:25px"
+							})
+						}), $("<a/>", {
+							href: "#",
+							html: $("<i/>", {
+								class: "bx bx-qr mx-3",
+								style: "font-size:25px",
+								click: function() {
+
+									$('#qr-code').html(`<img src=" ${base_url}public/images/${options.row.data.idarsip}.png " alt="" class"mx-auto" style="width: 50%;min-width: 50%;height:50%;border-radius: 0;">
+							<div>
+							<p>${options.row.data.nama_dokumen}<br/>
+							No. ${options.row.data.noarsip}</p>
+							<a href="${base_url}dokumen/detail/${options.row.data.idarsip}" target="_blank">Buka Link</a></div>`)
+
+									$("#basicModal").modal("show")
+
+								}
+							})
+						})]
 					}).appendTo(container);
 				}
 			}, {
-				dataField: ''
+				dataField: 'id',
+				caption: 'Aksi',
+				cellTemplate(container, options) {
+					if (session.akses_modul && session.akses_modul.entridata == 'on') {
+						$("<div/>", {
+							class: "d-flex flex-row justify-content-center",
+							html: [
+								$("<a/>", {
+									href: `${base_url}files/${options.row.data.file}`,
+									html: $("<i/>", {
+										class: "bx bx-file-find mx-3",
+										style: "font-size:25px"
+									}),
+								}), $("<a/>", {
+									href: `${site_url}home/view/${options.text}`,
+									html: $("<i/>", {
+										class: "bx bx-search mx-3",
+										style: "font-size:25px"
+									})
+								})
+							],
+						}).appendTo(container);
+					}
+				}
 			}]
 
 		}).dxDataGrid("instance");
@@ -310,4 +383,3 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	console.log(data);
 </script>
-<a href="link"><i class="fa fa search"></i></a>

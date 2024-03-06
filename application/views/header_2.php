@@ -23,6 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/fonts/boxicons.css') ?>" />
 
+
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/css/core.css') ?> " class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/css/theme-default.css') ?>" class="template-customizer-theme-css" />
@@ -30,6 +31,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.css') ?>" />
+
 
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/apex-charts/apex-charts.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/devex/lib/css/dx.fluent.blue.light.css') ?>">
@@ -51,6 +53,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/config.js') ?>"></script>
+
 </head>
 
 <body>
