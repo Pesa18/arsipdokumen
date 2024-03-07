@@ -273,18 +273,18 @@ class Home extends CI_Controller
 		}
 
 
-		// $data['current_page'] = 1;
-		// if ($offset >= $this->data_per_page) {
-		// 	$data['current_page'] = floor(($offset + $this->data_per_page) / $this->data_per_page);
-		// }
-		// /*
-		// if ($page<2) {
-		// 	$offset = 0;
-		// } else {
-		// 	$offset = ($page*$this->data_per_page)-$this->data_per_page;
-		// }
-		// */
-		// if ($offset > 0) $q .= "OFFSET $offset";
+		$data['current_page'] = 1;
+		if ($offset >= $this->data_per_page) {
+			$data['current_page'] = floor(($offset + $this->data_per_page) / $this->data_per_page);
+		}
+		/*
+		if ($page<2) {
+			$offset = 0;
+		} else {
+			$offset = ($page*$this->data_per_page)-$this->data_per_page;
+		}
+		*/
+		if ($offset > 0) $q .= "OFFSET $offset";
 		//echo($q); die();
 
 		$hsl = $this->db->query($q);
