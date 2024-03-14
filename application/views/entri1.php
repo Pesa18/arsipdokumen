@@ -12,42 +12,42 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	<div class="card-header py-3">
 		<a href="<?php echo base_url('/home/search'); ?>">
-			<i class="fa fa-arrow-left"></i>&ensp;Kembali
+			<i class="bx bx-left-arrow-alt"></i>Kembali
 		</a>
 	</div>
 
 	<div class="card-body">
-		<form id="entriForm" class="form-horizontal" action="<?php echo site_url('/admin/gentr'); ?>" method="post" enctype="multipart/form-data">
+		<form id="entriForm" class="form-horizontal needs-validation" action="<?php echo site_url('/admin/gentr'); ?>" method="post" enctype="multipart/form-data">
 			<!-- Form Name -->
 			<div class="row">
 				<div class="col-md-6">
 					<!-- 1st column -->
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="noarsip">Nomor Arsip</label>
 						<div class="col-md-12">
 							<input id="noarsip" name="noarsip" class="form-control" type="text" required>
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="nama_dokumen">Nama Dokumen</label>
 						<div class="col-md-12">
 							<input id="nama_dokumen" name="nama_dokumen" class="form-control" type="text" required>
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="tanggal">Tanggal Penciptaan</label>
 						<div class="col-md-12">
 							<input id="tanggal" name="tanggal" class="form-control" type="text" placeholder="yyyy-mm-dd" autocomplete="off" required>
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="pencipta">Pencipta Arsip</label>
 						<div class="col-md-12">
-							<select id="pencipta" name="pencipta" class="form-control">
+							<select id="pencipta" name="pencipta" class="form-select">
 								<option value="">Pilih</option>
 								<?php
 								if (isset($pencipta)) {
@@ -60,10 +60,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="unitpengolah">Unit Pengolah</label>
 						<div class="col-md-12">
-							<select id="unitpengolah" name="unitpengolah" class="form-control input-md">
+							<select id="unitpengolah" name="unitpengolah" class="form-select input-md">
 								<option value="">Pilih</option>
 								<?php
 								if (isset($unitpengolah)) {
@@ -76,10 +76,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="kode">Kode Klasifikasi</label>
 						<div class="col-md-12">
-							<select id="kode" name="kode" class="form-control input-md">
+							<select id="kode" name="kode" class="form-select input-md">
 								<option value="">Pilih</option>
 								<?php
 								if (isset($kode)) {
@@ -92,7 +92,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="uraian">Uraian</label>
 						<div class="col-md-12">
 							<textarea id="uraian" name="uraian" class="form-control input-md" rows="3"></textarea>
@@ -101,12 +101,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				</div><!-- /1st column -->
 
-				<div class="col-md-6">
+				<div class="col-md-6 mb-3">
 					<!-- 2nd column -->
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="lokasi">Lokasi Arsip</label>
 						<div class="col-md-12">
-							<select id="lokasi" name="lokasi" class="form-control input-md">
+							<select id="lokasi" name="lokasi" class="form-select input-md">
 								<option value="">Pilih</option>
 								<?php
 								if (isset($lokasi)) {
@@ -119,10 +119,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="media">Jenis Media</label>
 						<div class="col-md-12">
-							<select id="media" name="media" class="form-control input-md">
+							<select id="media" name="media" class="form-select input-md">
 								<option value="">Pilih</option>
 								<?php
 								if (isset($media)) {
@@ -135,7 +135,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="ket">Keterangan Keaslian</label>
 						<div class="col-md-12">
 							<select class="form-control" name="ket" id="ket">
@@ -145,24 +145,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="jumlah">Jumlah</label>
 						<div class="col-md-12">
 							<input id="jumlah" name="jumlah" class="form-control input-md" type="text" value="1">
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="nobox">Nomor Box</label>
 						<div class="col-md-8">
 							<input id="nobox" name="nobox" class="form-control input-md" type="text">
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="nobox">File</label>
 						<div class="col-md-12">
-							<input type="file" name="file" class="dropify" required>
+							<input type="file" name="file" class="dropify" id="filepond" data-pdf-preview-height="320" data-pdf-component-extra-params="toolbar=0&navpanes=0&scrollbar=0&view=fitH" required>
 							<small class="form-text text-muted">Ukuran Maksimal <?php echo number_format(ceil(max_file_upload_in_bytes() / 1000)); ?> MB</small>
 						</div>
 					</div>
@@ -170,8 +170,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</div><!-- /2nd column -->
 			</div><!-- /.row -->
 
-			<div class="form-group">
-				<div class="col-md-12">
+			<div class="form-group mb-3">
+				<div class="col-md-12 d-flex justify-content-end">
 					<button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-save"></i> Simpan</button>
 				</div>
 			</div>
@@ -208,3 +208,13 @@ function max_file_upload_in_bytes()
 	// return the smallest of them, this defines the real limit
 	return min($max_upload, $max_post, $memory_limit);
 }
+
+?>;
+
+<script>
+	$("#tanggal").flatpickr({
+			locale: "id"
+		}
+
+	)
+</script>

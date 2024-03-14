@@ -31,11 +31,18 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/sweetalert2/sweetalert2.min.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/themes/airbnb.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond/dist/filepond.min.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css') ?>" />
 
 
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/apex-charts/apex-charts.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/devex/lib/css/dx.fluent.blue.light.css') ?>">
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/jquery/jquery.js') ?>"></script>
+    <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/flatpickr.min.js') ?>"></script>
+    <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/l10n/id.js') ?>"></script>
+
     <!-- Page CSS -->
     <script src="<?= base_url('assets/devex/lib/js/dx.all.js') ?>"></script>
     <script>
@@ -52,7 +59,6 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/config.js') ?>"></script>
 
 </head>
 
@@ -112,7 +118,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
 
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="<?= site_url('/home') ?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Home</div>

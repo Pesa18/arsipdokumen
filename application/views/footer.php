@@ -44,13 +44,22 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/popper/popper.js') ?>"></script>
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/bootstrap.js') ?>"></script>
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/sweetalert2/sweetalert2.all.min.js') ?>"></script>
 
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/menu.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/jquery-validation/jquery.validate.min.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/validation.js') ?>"></script>
 
 <!-- endbuild -->
 
 <!-- Vendors JS -->
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/apex-charts/apexcharts.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond/dist/filepond.min.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js') ?>"></script>
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.js') ?>"></script>
+
+
 
 <!-- Main JS -->
 <script src="<?= base_url('assets/js/main.js') ?>"></script>
@@ -58,6 +67,8 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <!-- Page JS -->
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/ui-popover.js') ?>"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
+<script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/config.js') ?>"></script>
+
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script>
 

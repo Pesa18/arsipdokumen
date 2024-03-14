@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="card">
 	<div class="card-header py-3">
 		<div class="w-100 d-md-flex flex-md-wrap">
-			<div class="quick-links">
+			<div class="quick-links" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
 				<a href="<?= site_url('/admin/entr'); ?>" role="button" aria-expanded="false" aria-controls="advanced-search" class="nav-link btn btn-primary btn-sm mr-2"><i class="bx bx-folder-plus"></i> Entri Baru</a>
 			</div>
 		</div>
@@ -270,11 +270,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	$(() => {
 
-		var table = $('#data-grid').dxDataGrid({
+		const table = $('#data-grid').dxDataGrid({
 			dataSource: data,
 			showBorders: true,
 			showColumnLines: true,
 			showRowLines: true,
+			allowColumnReordering: true,
+			allowColumnResizing: true,
+			columnAutoWidth: true,
+			noDataText: "Tidak Ada Data",
 			columns: [{
 				caption: "No",
 				width: "auto",
@@ -318,13 +322,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							html: $("<i/>", {
 								class: "bx bx-file-find mx-3",
 								style: "font-size:25px"
-							}).attr({
-								"data-bs-toggle": "tooltip",
-								"data-bs-offset": "0,4",
-								"data-bs-placement": "top",
-								"data-bs-html": "true",
-								"title": "<i class='bx bx-bell bx-xs'></i> <span>Tooltip on top</span>"
-							}),
+							})
 						}), $("<a/>", {
 							href: `${site_url}home/view/${options.text}`,
 							html: $("<i/>", {
@@ -362,15 +360,68 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								$("<a/>", {
 									href: `${base_url}files/${options.row.data.file}`,
 									html: $("<i/>", {
-										class: "bx bx-file-find mx-3",
+										class: "bx bxs-pencil mx-3",
 										style: "font-size:25px"
-									}),
+									}).attr({
+										"data-toggle": "tooltip",
+										"data-placement": "top",
+										"title": "Edit"
+									}).tooltip(),
 								}), $("<a/>", {
-									href: `${site_url}home/view/${options.text}`,
+									href: "javascript:void(0)",
 									html: $("<i/>", {
-										class: "bx bx-search mx-3",
-										style: "font-size:25px"
-									})
+										class: "bx bxs-trash mx-3 text-danger",
+										style: "font-size:25px",
+										click: function() {
+											Swal.fire({
+												title: "Apakah Anda Yakin?",
+												text: "Anda tidak akan dapat mengembalikan tindakan ini!",
+												icon: "warning",
+												showCancelButton: true,
+												confirmButtonColor: "#3085d6",
+												cancelButtonColor: "#d33",
+												confirmButtonText: "Ya, Hapus!"
+											}).then((result) => {
+												if (result.value) {
+													$.ajax({
+														type: "POST",
+														url: "<?= site_url('/admin/del1') ?>",
+														data: {
+															id: options.text
+														},
+														dataType: "json",
+														success: function(response) {
+
+															if (response.status == "success") {
+																Swal.fire({
+																	position: "bottom-end",
+																	icon: "success",
+																	title: "Arsip berhasil di hapus",
+																	showConfirmButton: false,
+																	timer: 1500
+
+																}).then((result) => {
+																	if (result.dismiss == 'timer') {
+																		window.location.reload()
+																	}
+
+																});
+
+															}
+
+
+
+														}
+													});
+												}
+											});
+
+										}
+									}).attr({
+										"data-toggle": "tooltip",
+										"data-placement": "top",
+										"title": "Hapus"
+									}).tooltip(),
 								})
 							],
 						}).appendTo(container);
@@ -380,6 +431,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		}).dxDataGrid("instance");
 	})
+</script>
 
-	console.log(data);
+<script>
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip()
+
+
+
+	})
 </script>
