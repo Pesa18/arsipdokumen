@@ -138,7 +138,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="form-group mb-3">
 						<label class="col-md-4 control-label" for="ket">Keterangan Keaslian</label>
 						<div class="col-md-12">
-							<select class="form-control" name="ket" id="ket">
+							<select class="form-select" name="ket" id="ket">
 								<option value="asli" selected="selected">Asli</option>
 								<option value="copy">Copy</option>
 							</select>
@@ -170,9 +170,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</div><!-- /2nd column -->
 			</div><!-- /.row -->
 
+
 			<div class="form-group mb-3">
 				<div class="col-md-12 d-flex justify-content-end">
-					<button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-save"></i> Simpan</button>
+					<button type="submit" id="kirim" class="btn btn-primary btn-lg"><i class="fa fa-save"></i> Simpan</button>
 				</div>
 			</div>
 		</form>

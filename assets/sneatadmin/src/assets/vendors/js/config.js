@@ -85,6 +85,22 @@ let config = {
 				// Do custom type detection here and return with promise
 				resolve(type);
 			}),
+
+		onaddfile: function (error, file) {
+			const input = document.createElement("input");
+			input.type = "file";
+			input.id = "filepond-file";
+			// input.style.display = "none";
+			input.name = "file";
+			document.getElementById("entriForm").appendChild(input);
+
+			const dataTransfer = new DataTransfer();
+			dataTransfer.items.add(file.file);
+			input.files = dataTransfer.files;
+		},
+		onremovefile: (error, file) => {
+			console.log("hapus");
+		},
 	});
 	pond.setOptions({
 		allowPdfPreview: true,

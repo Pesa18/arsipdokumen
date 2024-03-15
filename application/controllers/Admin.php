@@ -118,120 +118,91 @@ class Admin extends CI_Controller
      */
     public function gentr()
     {
-
-        $config_rules = [
-            [
-                'field' => 'noarsip',
-                'label' => 'No Arsip',
-                'rules' => 'required',
-                'errors' => ['required' => '{field} harus diisi',]
-
-
-            ], [
-                'field' => 'test',
-                'label' => 'No Arsip',
-                'rules' => 'required',
-                'errors' => ['required' => 'harus diisi',]
-
-
-            ],
-        ];
-        $this->form_validation->set_rules($config_rules);
-
-
-
-        if ($this->form_validation->run() == FALSE) {
+        $query = $this->db->query("select max(id) as last from data_arsip");
+        $data = $query->row_array();
+        $last = $data['last'];
+        $nextNoUrut = $last + 1;
+        $id = $nextNoUrut;
+        $noarsip = $this->__sanitizeString($this->input->post('noarsip'));
+        $namadokumen = $this->__sanitizeString(strtoupper($this->input->post('nama_dokumen')));
+        $tanggal = $this->__sanitizeString($this->input->post('tanggal'));
+        $uraian = $this->__sanitizeString($this->input->post('uraian'));
+        $kode = $this->__sanitizeString($this->input->post('kode'));
+        $pencipta = $this->__sanitizeString($this->input->post('pencipta'));
+        $unitpengolah = $this->__sanitizeString($this->input->post('unitpengolah'));
+        $lokasi = $this->__sanitizeString($this->input->post('lokasi'));
+        $media = $this->__sanitizeString($this->input->post('media'));
+        $ket = $this->__sanitizeString($this->input->post('ket'));
+        $nobox = $this->__sanitizeString($this->input->post('nobox'));
+        $jumlah = $this->__sanitizeString($this->input->post('jumlah'));
+        $file = "";
+        $config['upload_path'] = 'files/';
+        $config['allowed_types'] = 'pdf|docx|doc|xlsx|xls|pptx|ppt|jpeg|jpg|png|bmp|tiff|gif|svg|zip|rar|7zip|tar|gtar|gzip|apk|psd|eps|cdr|ai';
 
 
+        $this->load->library('upload', $config);
 
-            $this->session->set_flashdata('validations_errors', validation_errors());
-            $this->session->set_flashdata('form_error', form_error('noarsip'));
-            return redirect('/admin/entr');
+        if ($this->upload->do_upload('file')) {
+            $datafile = $this->upload->data();
+
+
+            //$file = $datafile['full_path'];
+            $file = $datafile['file_name'];
         } else {
-            return redirect('/admin/entr');
+            //echo $this->upload->display_errors();
+            //echo $config['upload_path'];
+            //die();
         }
-        // $query = $this->db->query("select max(id) as last from data_arsip");
-        // $data = $query->row_array();
-        // $last = $data['last'];
-        // $nextNoUrut = $last + 1;
-        // $id = $nextNoUrut;
-        // $noarsip = $this->__sanitizeString($this->input->post('noarsip'));
-        // $namadokumen = $this->__sanitizeString(strtoupper($this->input->post('nama_dokumen')));
-        // $tanggal = $this->__sanitizeString($this->input->post('tanggal'));
-        // $uraian = $this->__sanitizeString($this->input->post('uraian'));
-        // $kode = $this->__sanitizeString($this->input->post('kode'));
-        // $pencipta = $this->__sanitizeString($this->input->post('pencipta'));
-        // $unitpengolah = $this->__sanitizeString($this->input->post('unitpengolah'));
-        // $lokasi = $this->__sanitizeString($this->input->post('lokasi'));
-        // $media = $this->__sanitizeString($this->input->post('media'));
-        // $ket = $this->__sanitizeString($this->input->post('ket'));
-        // $nobox = $this->__sanitizeString($this->input->post('nobox'));
-        // $jumlah = $this->__sanitizeString($this->input->post('jumlah'));
-        // $file = "";
-        // $config['upload_path'] = 'files/';
-        // $config['allowed_types'] = 'pdf|docx|doc|xlsx|xls|pptx|ppt|jpeg|jpg|png|bmp|tiff|gif|svg|zip|rar|7zip|tar|gtar|gzip|apk|psd|eps|cdr|ai';
 
+        $q = sprintf(
+            "INSERT INTO data_arsip (id,idarsip,noarsip,nama_dokumen,tanggal,uraian,kode,ket,nobox,file,jumlah,pencipta,unit_pengolah,lokasi,media,tgl_input,username)
+        	VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%d',%d,%d,%d,%d,now(),'%s')",
+            $id,
+            encrypt_url($id),
+            $noarsip,
+            $namadokumen,
+            $tanggal,
+            $uraian,
+            $kode,
+            $ket,
+            $nobox,
+            $file,
+            $jumlah,
+            $pencipta,
+            $unitpengolah,
+            $lokasi,
+            $media,
+            $_SESSION['username']
+        );
 
-        // $this->load->library('upload', $config);
-        // if ($this->upload->do_upload('file')) {
-        //     $datafile = $this->upload->data();
-        //     //$file = $datafile['full_path'];
-        //     $file = $datafile['file_name'];
-        // } else {
-        //     //echo $this->upload->display_errors();
-        //     //echo $config['upload_path'];
-        //     //die();
-        // }
+        $this->load->library('ciqrcode'); //pemanggilan library QR CODE
+        $config['cacheable']    = true; //boolean, the default is true
+        //$config['cachedir']		= './assets/'; //string, the default is application/cache/
+        //$config['errorlog']		= './assets/'; //string, the default is application/logs/
+        $config['imagedir']        = './public/images/'; //direktori penyimpanan qr code
+        $config['quality']        = true; //boolean, the default is true
+        $config['size']            = '1024'; //interger, the default is 1024
+        $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
+        $config['white']        = array(70, 130, 180); // array, default is array(0,0,0)
+        $this->ciqrcode->initialize($config);
 
-        // $q = sprintf(
-        //     "INSERT INTO data_arsip (id,idarsip,noarsip,nama_dokumen,tanggal,uraian,kode,ket,nobox,file,jumlah,pencipta,unit_pengolah,lokasi,media,tgl_input,username)
-        // 	VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%d',%d,%d,%d,%d,now(),'%s')",
-        //     $id,
-        //     encrypt_url($id),
-        //     $noarsip,
-        //     $namadokumen,
-        //     $tanggal,
-        //     $uraian,
-        //     $kode,
-        //     $ket,
-        //     $nobox,
-        //     $file,
-        //     $jumlah,
-        //     $pencipta,
-        //     $unitpengolah,
-        //     $lokasi,
-        //     $media,
-        //     $_SESSION['username']
-        // );
+        $image_name = encrypt_url($id) . '.png'; //buat name dari qr code sesuai dengan nim
 
-        // $this->load->library('ciqrcode'); //pemanggilan library QR CODE
-        // $config['cacheable']    = true; //boolean, the default is true
-        // //$config['cachedir']		= './assets/'; //string, the default is application/cache/
-        // //$config['errorlog']		= './assets/'; //string, the default is application/logs/
-        // $config['imagedir']        = './public/images/'; //direktori penyimpanan qr code
-        // $config['quality']        = true; //boolean, the default is true
-        // $config['size']            = '1024'; //interger, the default is 1024
-        // $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
-        // $config['white']        = array(70, 130, 180); // array, default is array(0,0,0)
-        // $this->ciqrcode->initialize($config);
+        $params['data'] = base_url() . 'dokumen/detail/' . encrypt_url($id); //data yang akan di jadikan QR CODE
+        $params['level'] = 'H'; //H=High
+        $params['size'] = 25;
+        $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
+        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
 
-        // $image_name = encrypt_url($id) . '.png'; //buat name dari qr code sesuai dengan nim
-
-        // $params['data'] = base_url() . 'dokumen/detail/' . encrypt_url($id); //data yang akan di jadikan QR CODE
-        // $params['level'] = 'H'; //H=High
-        // $params['size'] = 25;
-        // $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
-        // $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
-
-        // $hsl = $this->db->query($q);
-        // $q = "SELECT LAST_INSERT_ID() as vid;";
-        // $hsl = $this->db->query($q);
-        // $row = $hsl->row_array();
-        // $v = $row['vid'];
-        // //var_dump($row);
-        // $this->session->set_flashdata('success', "Data berhasil disimpan");
-        // redirect('/home/search');
-        // //redirect('/home/view/' . $v, 'refresh');
+        $hsl = $this->db->query($q);
+        $q = "SELECT LAST_INSERT_ID() as vid;";
+        $hsl = $this->db->query($q);
+        $row = $hsl->row_array();
+        $v = $row['vid'];
+        //var_dump($row);
+        $this->session->set_flashdata('success', "Data berhasil disimpan");
+        redirect('/home/search');
+        //redirect('/home/view/' . $v, 'refresh');
     }
 
     /**
