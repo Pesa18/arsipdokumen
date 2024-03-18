@@ -32,7 +32,6 @@ let config = {
 	function initActiveMenu() {
 		// === following js will activate the menu in left side bar based on url ====
 		$(".menu-item a").each(function () {
-			console.log(this);
 			var pageUrl = window.location.href.split(/[?#]/)[0];
 			if (this.href == pageUrl) {
 				$(this).parent().addClass("active open"); // add active to li of the current link
@@ -79,7 +78,7 @@ let config = {
 		allowFileEncode: false,
 		allowFileSizeValidation: true,
 		name: "pdf",
-		acceptedFileTypes: ["application/pdf"],
+		acceptedFileTypes: ["application/pdf", ""],
 		fileValidateTypeDetectType: (source, type) =>
 			new Promise((resolve, reject) => {
 				// Do custom type detection here and return with promise
@@ -90,16 +89,16 @@ let config = {
 			const input = document.createElement("input");
 			input.type = "file";
 			input.id = "filepond-file";
-			// input.style.display = "none";
 			input.name = "file";
-			document.getElementById("entriForm").appendChild(input);
+			$(input).appendTo("#entriForm");
 
 			const dataTransfer = new DataTransfer();
 			dataTransfer.items.add(file.file);
 			input.files = dataTransfer.files;
 		},
 		onremovefile: (error, file) => {
-			console.log("hapus");
+			const input = document.getElementById("filepond-file");
+			input.remove();
 		},
 	});
 	pond.setOptions({

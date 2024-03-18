@@ -45,6 +45,9 @@
 				media: {
 					required: true,
 				},
+				file: {
+					required: true,
+				},
 			},
 			messages: {
 				noarsip: {
@@ -70,6 +73,9 @@
 					required: "Lokasi harus dipilih",
 				},
 				media: {
+					required: "Media harus dipilih",
+				},
+				file: {
 					required: "Media harus dipilih",
 				},
 			},

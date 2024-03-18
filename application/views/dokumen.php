@@ -358,7 +358,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							class: "d-flex flex-row justify-content-center",
 							html: [
 								$("<a/>", {
-									href: `${base_url}files/${options.row.data.file}`,
+									href: `${site_url}admin/vedit/${options.row.data.url}`,
 									html: $("<i/>", {
 										class: "bx bxs-pencil mx-3",
 										style: "font-size:25px"
