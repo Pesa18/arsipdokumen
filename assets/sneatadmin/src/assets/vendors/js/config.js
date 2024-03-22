@@ -49,6 +49,8 @@ let config = {
 	}
 	init();
 
+	// contol K Search//
+
 	document.addEventListener("keydown", function (event) {
 		// Mendapatkan tombol yang ditekan
 		var keyPressed = event.keyCode || event.which;
@@ -63,9 +65,16 @@ let config = {
 			event.preventDefault();
 			// Menambahkan log atau melakukan tindakan apa pun yang Anda butuhkan
 			console.log("Ctrl + K ditekan, tetapi diabaikan.");
+			modalSearch();
 		}
 	});
 
+	$("#cari-arsip").click(function (e) {
+		e.preventDefault();
+		modalSearch();
+	});
+
+	// FilePond
 	FilePond.registerPlugin(
 		FilePondPluginFileValidateSize,
 		FilePondPluginFileValidateType,
@@ -86,19 +95,16 @@ let config = {
 			}),
 
 		onaddfile: function (error, file) {
-			const input = document.createElement("input");
-			input.type = "file";
-			input.id = "filepond-file";
-			input.name = "file";
-			$(input).appendTo("#entriForm");
+			console.log(file);
+			const input = document.getElementById("filepond_file");
 
 			const dataTransfer = new DataTransfer();
 			dataTransfer.items.add(file.file);
 			input.files = dataTransfer.files;
 		},
 		onremovefile: (error, file) => {
-			const input = document.getElementById("filepond-file");
-			input.remove();
+			const input = document.getElementById("filepond_file");
+			input.value = null;
 		},
 	});
 	pond.setOptions({
@@ -106,4 +112,11 @@ let config = {
 		pdfPreviewHeight: 320,
 		pdfComponentExtraParams: "toolbar=0&view=fit&page=1",
 	});
+
+	// Modal Cari Arsip
+
+	function modalSearch() {
+		$("#searchModal").modal("show");
+		$("#nameBasic").focus();
+	}
 })(jQuery);

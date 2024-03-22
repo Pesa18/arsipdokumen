@@ -142,7 +142,8 @@ class Admin extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('file')) {
+
+        if ($this->upload->do_upload('filepond_file')) {
             $datafile = $this->upload->data();
 
 
@@ -248,6 +249,17 @@ class Admin extends CI_Controller
      * Process input data from archive edit form
      *
      */
+
+
+    public function coba_edit()
+    {
+        $config['upload_path'] = 'files/';
+        $config['allowed_types'] = 'pdf|docx|doc|xlsx|xls|pptx|ppt|jpeg|jpg|png|bmp|tiff|gif|svg|zip|rar|7zip|tar|gtar|gzip|apk|psd|eps|cdr|ai';
+        $this->load->library('upload', $config);
+
+        var_dump($this->upload->do_upload('filepond_file'));
+        die();
+    }
     public function edit()
     {
         $noarsip = $this->__sanitizeString($this->input->post('noarsip'));
@@ -268,7 +280,10 @@ class Admin extends CI_Controller
         $config['upload_path'] = 'files/';
         $config['allowed_types'] = 'pdf|docx|doc|xlsx|xls|pptx|ppt|jpeg|jpg|png|bmp|tiff|gif|svg|zip|rar|7zip|tar|gtar|gzip|apk|psd|eps|cdr|ai';
         $this->load->library('upload', $config);
-        if ($this->upload->do_upload('file')) {
+
+        // var_dump($this->upload->do_upload('filepond_file'));
+        // die();
+        if ($this->upload->do_upload('filepond_file')) {
             $datafile = $this->upload->data();
             //$file = $datafile['full_path'];
             $file = $datafile['file_name'];
@@ -327,6 +342,7 @@ class Admin extends CI_Controller
         }
         $q = sprintf("UPDATE data_arsip SET file=NULL WHERE id=%d", $id);
         $hsl = $this->db->query($q);
+        echo json_encode(array('status' => 'success'));
     }
 
     /**

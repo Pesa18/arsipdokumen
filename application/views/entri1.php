@@ -164,7 +164,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-12">
 							<input type="file" name="file" class="dropify" id="filepond" data-pdf-preview-height="320" data-pdf-component-extra-params="toolbar=0&navpanes=0&scrollbar=0&view=fitH" required>
 							<small class="form-text text-muted">Ukuran Maksimal <?php echo number_format(ceil(max_file_upload_in_bytes() / 1000)); ?> MB</small>
+
 						</div>
+						<input type="file" id="filepond_file" name="filepond_file" style="opacity: 0;pointer-events: none;">
 					</div>
 
 				</div><!-- /2nd column -->

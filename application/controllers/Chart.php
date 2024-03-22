@@ -26,9 +26,9 @@ class Chart extends CI_Controller
 	protected function __output($nview, $data = null)
 	{
 		$data['set'] = $this->crud->get('pengaturan', array('id_pengaturan' => '1'))->row();
-		$this->load->view('header', $data);
+		$this->load->view('header_2', $data);
 		$this->load->view($nview, $data);
-		$this->load->view('footer_2', $data);
+		$this->load->view('footer', $data);
 	}
 
 	/**

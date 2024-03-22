@@ -206,9 +206,19 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                         echo "</ul>
                         </li>";
                     } ?>
+                    <?php
+                    if (isset($_SESSION['akses_modul']['import']) && $_SESSION['akses_modul']['import'] == 'on') {
 
+
+                        echo ' <li class="menu-item"> <a href="' . site_url('admin/import') . '" class="menu-link"><i class="menu-icon tf-icons bx bx-import"></i><div data-i18n="Boxicons">Import Data</div></a></li>';
+                    }
+
+
+                    ?>
 
                 </ul>
+
+
             </aside>
             <!-- / Menu -->
             <!-- Modal -->
@@ -216,32 +226,24 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel1">Cari Arsip</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col mb-3">
-                                    <label for="nameBasic" class="form-label">Name</label>
-                                    <input type="text" id="nameBasic" class="form-control" placeholder="Enter Name" />
+                                <div class="col mb-3 d-flex align-items-center border-2 border rounded border-primary">
+
+                                    <input type="text" id="nameBasic" class="form-control ml-3 px-4 fs-24 py-3 text position-relative border-0 shadow-none" placeholder="Enter Name" autofocus />
+                                    <i class="bx bx-search position-absolute" style="font-size: x-large;  left: 20px;"></i>
                                 </div>
-                            </div>
-                            <div class="row g-2">
-                                <div class="col mb-0">
-                                    <label for="emailBasic" class="form-label">Email</label>
-                                    <input type="text" id="emailBasic" class="form-control" placeholder="xxxx@xxx.xx" />
-                                </div>
-                                <div class="col mb-0">
-                                    <label for="dobBasic" class="form-label">DOB</label>
-                                    <input type="text" id="dobBasic" class="form-control" placeholder="DD / MM / YY" />
+
+                                <div class="text-center">
+                                    Tidak ada data
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+
                         </div>
                     </div>
                 </div>
@@ -262,7 +264,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item d-flex align-items-center">
                                 <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." />
+                                <input type="text" class="form-control border-0 shadow-none" id="cari-arsip" style="cursor: pointer;" placeholder="Cari Arsip" aria-label="Cari Arsip" />
                             </div>
                         </div>
                         <!-- /Search -->

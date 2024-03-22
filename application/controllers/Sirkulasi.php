@@ -124,9 +124,9 @@ class Sirkulasi extends CI_Controller
 			$data['admin'] = true;
 		}
 		$data['set'] = $this->crud->get('pengaturan', array('id_pengaturan' => '1'))->row();
-		$this->load->view('header', $data);
+		$this->load->view('header_2', $data);
 		$this->load->view($nview, $data);
-		$this->load->view('footer_2');
+		$this->load->view('footer');
 	}
 
 	public function entr()
