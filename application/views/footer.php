@@ -62,7 +62,8 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!-- Main JS -->
 <script src="<?= base_url('assets/js/main.js') ?>"></script>
-
+<script src="<?= base_url('public/js/jquery.form.min.js') ?>"></script>
+<script src="<?= base_url('public/js/custom.js') ?>"></script>
 <!-- Page JS -->
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/ui-popover.js') ?>"></script>
 <!-- Place this tag in your head or just before your close body tag. -->

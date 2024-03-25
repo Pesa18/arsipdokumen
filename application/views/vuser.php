@@ -292,15 +292,49 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		columns: [{
 			id: 'id',
 			name: 'No',
-			width: 'auto'
+			width: '50px'
 
-		}, 'username', 'tipe', {
+		}, {
+			id: 'username',
+			name: 'Username'
+		}, {
+			id: 'tipe',
+			name: 'Tipe'
+		}, {
+			id: 'akses_modul',
+			name: 'Akses',
+			width: '200px',
+			formatter: (cell, row) => {
+				let html = '';
+
+				// Melakukan perulangan pada objek cell
+				for (const key in cell) {
+					// Mengecek apakah key adalah properti objek dan bukan fungsi atau properti lainnya
+					if (cell.hasOwnProperty(key)) {
+						// Menggunakan data dari objek cell untuk membuat elemen HTML yang sesuai
+						html += `<span class="badge rounded-pill bg-primary m-1">${key}</span>`;
+					}
+				}
+
+				// Mengembalikan HTML yang dihasilkan
+				return gridjs.html(`<div class="col "> ${html}</div>`);
+			}
+		}, {
 			name: 'Aksi',
-			formatter: (_, row) => gridjs.html(`<div class="d-flex justify-content-center">
+			width: "7%",
+			formatter: (_, row) => {
 
-<button class="btn btn-primary"><i class="bx bx-pencil"></i>Edit</button>
-<button class="btn btn-primary"><i class="bx bx-pencil"></i>Edit</button>
+
+				return gridjs.html(`<div class=" col d-flex justify-content-around">
+
+			<button type="button" id="editUser" data-toggle="modal" data-target="#edituser" data-id="${row.cells[0].data}" class="btn rounded-pill btn-icon btn-primary ">
+                              <span class="tf-icons bx bx-pencil"></span>
+                            </button>
+                            <button type="button" id="hapusUser" class="btn rounded-pill btn-icon btn-danger">
+                              <span class="tf-icons bx bx-trash"></span>
+                            </button>
 </div>`)
+			}
 
 		}],
 		data: json

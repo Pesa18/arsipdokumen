@@ -13,83 +13,83 @@ $(document).ready(function () {
 	//console.log(base_url);
 	//console.log(site_url);
 
-	$("#tanggal").datepicker({
-		todayHighlight: true,
-		maxDate: "0",
-		changeMonth: true,
-		changeYear: true,
-		format: "yyyy-mm-dd",
-	});
-	$("#tgl_pinjam").datepicker({
-		todayHighlight: true,
-		maxDate: "0",
-		changeMonth: true,
-		changeYear: true,
-		format: "yyyy-mm-dd",
-	});
-	$("#tgl_haruskembali").datepicker({
-		todayHighlight: true,
-		changeMonth: true,
-		changeYear: true,
-		format: "yyyy-mm-dd",
-	});
+	// $("#tanggal").datepicker({
+	// 	todayHighlight: true,
+	// 	maxDate: "0",
+	// 	changeMonth: true,
+	// 	changeYear: true,
+	// 	format: "yyyy-mm-dd",
+	// });
+	// $("#tgl_pinjam").datepicker({
+	// 	todayHighlight: true,
+	// 	maxDate: "0",
+	// 	changeMonth: true,
+	// 	changeYear: true,
+	// 	format: "yyyy-mm-dd",
+	// });
+	// $("#tgl_haruskembali").datepicker({
+	// 	todayHighlight: true,
+	// 	changeMonth: true,
+	// 	changeYear: true,
+	// 	format: "yyyy-mm-dd",
+	// });
 
-	/** Fungsi untuk menghapus data arsip */
-	$(".deldata").click(function () {
-		var d = $(this).attr("id");
-		$("#deliddata").val(d);
-	});
-	$("#deldatago").on("click", function () {
-		$("#fdeldata").submit();
-	});
-	$("#fdeldata").ajaxForm({ success: deldata });
-	function deldata() {
-		alert("Data telah sukses dihapus");
-		$("#deldata").modal("hide");
-		window.location.reload(true);
-	}
+	// /** Fungsi untuk menghapus data arsip */
+	// $(".deldata").click(function () {
+	// 	var d = $(this).attr("id");
+	// 	$("#deliddata").val(d);
+	// });
+	// $("#deldatago").on("click", function () {
+	// 	$("#fdeldata").submit();
+	// });
+	// $("#fdeldata").ajaxForm({ success: deldata });
+	// function deldata() {
+	// 	alert("Data telah sukses dihapus");
+	// 	$("#deldata").modal("hide");
+	// 	window.location.reload(true);
+	// }
 
-	/** Fungsi untuk menghapus data sirkulasi arsip */
-	$(".sdeldata").click(function () {
-		var d = $(this).attr("id");
-		$("#deliddata").val(d);
-	});
-	$("#sdeldatago").on("click", function () {
-		$("#fsdeldata").submit();
-	});
-	$("#fsdeldata").ajaxForm({ success: sdeldata });
-	function sdeldata() {
-		alert("Data telah sukses dihapus");
-		$("#deldata").modal("hide");
-		window.location.reload(true);
-	}
+	// /** Fungsi untuk menghapus data sirkulasi arsip */
+	// $(".sdeldata").click(function () {
+	// 	var d = $(this).attr("id");
+	// 	$("#deliddata").val(d);
+	// });
+	// $("#sdeldatago").on("click", function () {
+	// 	$("#fsdeldata").submit();
+	// });
+	// $("#fsdeldata").ajaxForm({ success: sdeldata });
+	// function sdeldata() {
+	// 	alert("Data telah sukses dihapus");
+	// 	$("#deldata").modal("hide");
+	// 	window.location.reload(true);
+	// }
 
-	/** Fungsi untuk mengembalikan arsip dalam sirkulasi */
-	$(".kemdata").click(function () {
-		var d = $(this).attr("id");
-		$("#kemid").val(d);
-	});
-	$("#kemarsipgo").on("click", function () {
-		$("#fkemarsip").submit();
-	});
-	$("#fkemarsip").ajaxForm({ success: kembdata });
-	function kembdata() {
-		alert("Arsip telah sukses dikembalikan");
-		$("#arsipkembali").modal("hide");
-		window.location.reload(true);
-	}
+	// /** Fungsi untuk mengembalikan arsip dalam sirkulasi */
+	// $(".kemdata").click(function () {
+	// 	var d = $(this).attr("id");
+	// 	$("#kemid").val(d);
+	// });
+	// $("#kemarsipgo").on("click", function () {
+	// 	$("#fkemarsip").submit();
+	// });
+	// $("#fkemarsip").ajaxForm({ success: kembdata });
+	// function kembdata() {
+	// 	alert("Arsip telah sukses dikembalikan");
+	// 	$("#arsipkembali").modal("hide");
+	// 	window.location.reload(true);
+	// }
 
-	/** Fungsi untuk menghapus file attachment arsip */
-	$("#delfilego").on("click", function () {
-		$("#fdelfile").submit();
-	});
-	$("#fdelfile").ajaxForm({ success: delfile });
-	function delfile() {
-		alert("File telah sukses dihapus");
-		$("#uplodfile").show();
-		$("#linkfile").hide();
-		$("#delfile").modal("hide");
-	}
+	// /** Fungsi untuk menghapus file attachment arsip */
+	// $("#delfilego").on("click", function () {
+	// 	$("#fdelfile").submit();
+	// });
+	// $("#fdelfile").ajaxForm({ success: delfile });
+	// function delfile() {
+	// 	alert("File telah sukses dihapus");
+	// 	$("#uplodfile").show();
+	// 	$("#linkfile").hide();
+	// 	$("#delfile").modal("hide");
+	// }
 
 	/** Fungsi-fungsi terkait dengan data master user aplikasi arsip */
 	function reloaduser() {
@@ -166,12 +166,12 @@ $(document).ready(function () {
 		$("#fadduser")[0].reset();
 	}
 
-	$("#divtabeluser").on("click", ".eduser", function () {
-		var d = $(this).attr("id");
+	$("#editUser").on("click", function () {
+		var d = $(this).attr("data-id");
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/auser/",
-			data: "id=" + d,
+			data: { id: d },
 			cache: false,
 			success: function (ahtml) {
 				html = jQuery.parseJSON(ahtml);
@@ -199,6 +199,7 @@ $(document).ready(function () {
 						if (akses_modul.import == "on") $("#emodul9").prop("checked", true);
 					}
 				}
+				$("#edituser").modal("show");
 			},
 		});
 	});
