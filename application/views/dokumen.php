@@ -263,7 +263,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <script>
 	var data = JSON.parse(`<?= json_encode($data); ?>`)
 	var session = JSON.parse(`<?= json_encode($_SESSION); ?>`)
-	console.log(session);
+	console.log('<?= json_encode($data); ?>');
 
 
 	$(() => {

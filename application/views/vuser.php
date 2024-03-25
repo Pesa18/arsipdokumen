@@ -17,6 +17,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 
 <div class="card">
+
+
 	<div class="card-header py-3">
 		<a href="<?php echo base_url('/home'); ?>">
 			<i class="fa fa-arrow-left"></i>&ensp;Kembali
@@ -24,6 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 
 	<div class="card-body">
+		<div id="table"></div>
 		<div class="row">
 			<div class="col-md-12" id="divtabeluser">
 				<div class="table-responsive">
@@ -46,15 +49,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								echo "<td>" . $u['username'] . "</td>";
 								echo "<td>" . $u['akses_klas'] . "</td>";
 								echo "<td>";
-								$mm = $u['akses_modul'];
-								if ($mm != "") {
-									$mm = json_decode($mm);
-									if ($mm) {
-										foreach ($mm as $key => $val) {
-											echo $key . ",";
-										}
-									}
-								}
 								echo "</td>";
 								echo "<td>" . $u['tipe'] . "</td>";
 								echo "<td align=\"center\"><a data-toggle=\"modal\" data-target=\"#edituser\" class='eduser text-primary' href='#' id='" . $u['id'] . "' title=\"Edit\"><i class=\"fa fa-edit fa-lg\"></i> </a></td>";
@@ -70,6 +64,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</div>
 </div>
+
+
 
 <div class="modal fade" id="adduser">
 	<div class="modal-dialog" role="document">
@@ -285,3 +281,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+<script>
+	var json = JSON.parse(`<?= json_encode($user, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES); ?>`);
+	console.log(json);
+
+	new gridjs.Grid({
+		columns: [{
+			id: 'id',
+			name: 'No',
+			width: 'auto'
+
+		}, 'username', 'tipe', {
+			name: 'Aksi',
+			formatter: (_, row) => gridjs.html(`<div class="d-flex justify-content-center">
+
+<button class="btn btn-primary"><i class="bx bx-pencil"></i>Edit</button>
+<button class="btn btn-primary"><i class="bx bx-pencil"></i>Edit</button>
+</div>`)
+
+		}],
+		data: json
+	}).render(document.getElementById('table'));
+</script>

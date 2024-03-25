@@ -283,14 +283,17 @@ class Admin extends CI_Controller
 
         // var_dump($this->upload->do_upload('filepond_file'));
         // die();
-        if ($this->upload->do_upload('filepond_file')) {
-            $datafile = $this->upload->data();
-            //$file = $datafile['full_path'];
-            $file = $datafile['file_name'];
-        } else {
-            $q = "SELECT file FROM data_arsip WHERE id=$id";
-            $d = $this->db->query($q)->row_array()['file'];
+        $q = "SELECT file FROM data_arsip WHERE id=$id";
+        $d = $this->db->query($q)->row_array()['file'];
+        if ($d) {
             $file = $d;
+        } else {
+            if ($this->upload->do_upload('filepond_file')) {
+                $datafile = $this->upload->data();
+                //$file = $datafile['full_path'];
+                $file = $datafile['file_name'];
+            } else {
+            }
         }
 
         if (isset($_POST)) {
@@ -1068,6 +1071,11 @@ class Admin extends CI_Controller
         $q .= " ORDER BY username ASC";
         $hsl = $this->db->query($q);
         $data['user'] = $hsl->result_array();
+        foreach ($data['user'] as $key => $row) {
+            $data['user'][$key]['akses_modul'] = json_decode($row['akses_modul'], true);
+        }
+
+
         $data["title"] = "Master User";
         $this->__output('vuser', $data);
     }

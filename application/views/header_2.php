@@ -36,12 +36,14 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond/dist/filepond.min.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css') ?>" />
 
+    <link rel="stylesheet" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css">
 
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/apex-charts/apex-charts.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/devex/lib/css/dx.fluent.blue.light.css') ?>">
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/jquery/jquery.js') ?>"></script>
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/flatpickr.min.js') ?>"></script>
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/l10n/id.js') ?>"></script>
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
 
     <!-- Page CSS -->
     <script src="<?= base_url('assets/devex/lib/js/dx.all.js') ?>"></script>

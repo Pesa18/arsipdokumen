@@ -40,7 +40,6 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/popper/popper.js') ?>"></script>
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/js/bootstrap.js') ?>"></script>
 <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
