@@ -34,6 +34,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/sweetalert2/sweetalert2.min.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/themes/airbnb.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond/dist/filepond.min.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/select2/select2.min.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/pond/filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css') ?>" />
 
     <link rel="stylesheet" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css">
@@ -43,6 +44,8 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/jquery/jquery.js') ?>"></script>
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/flatpickr.min.js') ?>"></script>
     <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/flatpickr/dist/l10n/id.js') ?>"></script>
+    <script src="<?= base_url('assets/sneatadmin/src/assets/vendors/libs/select2/select2.min.js') ?>"></script>
+
     <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
 
     <!-- Page CSS -->

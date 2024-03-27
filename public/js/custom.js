@@ -120,7 +120,51 @@ $(document).ready(function () {
 		$("#deluser").modal("hide");
 	}
 	$("#editusergo").on("click", function () {
-		$("#feduser").submit();
+		let dataSelect = $("#selectdua").val();
+		let form = $("#feduser")[0];
+		var fd = new FormData(form);
+		for (let index = 0; index < dataSelect.length; index++) {
+			if (dataSelect[index] == "entridata") {
+				fd.append("modul[entridata]", "on");
+			}
+			if (dataSelect[index] == "sirkulasi") {
+				fd.append("modul[sirkulasi]", "on");
+			}
+			if (dataSelect[index] == "klasifikasi") {
+				fd.append("modul[klasifikasi]", "on");
+			}
+			if (dataSelect[index] == "pencipta") {
+				fd.append("modul[pencipta]", "on");
+			}
+			if (dataSelect[index] == "pengolah") {
+				fd.append("modul[pengolah]", "on");
+			}
+			if (dataSelect[index] == "lokasi") {
+				fd.append("modul[lokasi]", "on");
+			}
+			if (dataSelect[index] == "media") {
+				fd.append("modul[media]", "on");
+			}
+			if (dataSelect[index] == "user") {
+				fd.append("modul[user]", "on");
+			}
+			if (dataSelect[index] == "import") {
+				fd.append("modul[import]", "on");
+			}
+		}
+		fd.delete("test");
+
+		$.ajax({
+			type: "POST",
+			url: site_url + "/admin/eduser",
+			data: fd,
+			processData: false,
+			contentType: false,
+			dataType: "json",
+			success: function (response) {
+				console.log(response);
+			},
+		});
 	});
 	$("#feduser").ajaxForm({ success: eduser });
 	function eduser() {
@@ -166,7 +210,8 @@ $(document).ready(function () {
 		$("#fadduser")[0].reset();
 	}
 
-	$("#editUser").on("click", function () {
+	$(document).on("click", "#edit_user", function (e) {
+		e.preventDefault();
 		var d = $(this).attr("data-id");
 		$.ajax({
 			type: "POST",
@@ -184,20 +229,25 @@ $(document).ready(function () {
 					var akses_modul = jQuery.parseJSON(html.akses_modul);
 					if (typeof akses_modul == "object") {
 						if (akses_modul.entridata == "on")
-							$("#emodul1").prop("checked", true);
+							$("#emodul1").attr("selected", "selected");
 						if (akses_modul.sirkulasi == "on")
-							$("#emodul2").prop("checked", true);
+							$("#emodul2").attr("selected", "selected");
 						if (akses_modul.klasifikasi == "on")
-							$("#emodul3").prop("checked", true);
+							$("#emodul3").attr("selected", "selected");
 						if (akses_modul.pencipta == "on")
-							$("#emodul4").prop("checked", true);
+							$("#emodul4").attr("selected", "selected");
 						if (akses_modul.pengolah == "on")
-							$("#emodul5").prop("checked", true);
-						if (akses_modul.lokasi == "on") $("#emodul6").prop("checked", true);
-						if (akses_modul.media == "on") $("#emodul7").prop("checked", true);
-						if (akses_modul.user == "on") $("#emodul8").prop("checked", true);
-						if (akses_modul.import == "on") $("#emodul9").prop("checked", true);
+							$("#emodul5").attr("selected", "selected");
+						if (akses_modul.lokasi == "on")
+							$("#emodul6").attr("selected", "selected");
+						if (akses_modul.media == "on")
+							$("#emodul7").attr("selected", "selected");
+						if (akses_modul.user == "on")
+							$("#emodul8").attr("selected", "selected");
+						if (akses_modul.import == "on")
+							$("#emodul9").attr("selected", "selected");
 					}
+					$("#selectdua").trigger("change");
 				}
 				$("#edituser").modal("show");
 			},
