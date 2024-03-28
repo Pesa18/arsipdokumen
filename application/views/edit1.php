@@ -155,7 +155,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="form-group mb-3">
 							<label class="col-md-4 control-label" for="nobox">File</label>
 							<div class="col-md-12">
-								<input type="file" name="file" class="dropify" id="filepondEdit" data-pdf-preview-height="320" data-pdf-component-extra-params="toolbar=0&navpanes=0&scrollbar=0&view=fitH" required>
+								<input type="file" name="file" class="dropify" id="filepondEdit" data-pdf-preview-height="500" data-pdf-component-extra-params="toolbar=0&navpanes=0&scrollbar=0&view=fitH" required>
 								<small class="form-text text-muted">Ukuran Maksimal <?php echo number_format(ceil(max_file_upload_in_bytes() / 1000)); ?> MB</small>
 
 							</div>
@@ -323,7 +323,7 @@ function max_file_upload_in_bytes()
 
 		pondEdit.setOptions({
 			allowPdfPreview: true,
-			pdfPreviewHeight: 320,
+			pdfPreviewHeight: 500,
 			pdfComponentExtraParams: "toolbar=0&view=fit&page=1",
 		});
 
