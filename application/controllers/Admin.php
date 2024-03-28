@@ -1114,6 +1114,7 @@ class Admin extends CI_Controller
         $username = $this->__sanitizeString($this->input->post('username'));
         $password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
         $tipe = $this->__sanitizeString($this->input->post('tipe'));
+
         $akses_klas = $this->__sanitizeString($this->input->post('akses_klas'));
         $akses_modul = json_encode($this->input->post('modul'));
         $q = sprintf(

@@ -258,7 +258,7 @@ class Home extends CI_Controller
 	{
 
 		$qq = $this->src(true); //print_r($qq); die();
-		$q = $qq[0];  //var_dump($q); die();
+		$q = $qq[0];
 		$data['src'] = $qq[2];
 
 		//echo $q;

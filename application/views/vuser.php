@@ -7,9 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<h3 class="page-title">Master User</h3>
 			<div class="quick-link-wrapper d-md-flex flex-md-wrap">
 				<div class="quick-links">
-					<?php if (isset($_SESSION['akses_modul']['user']) && $_SESSION['akses_modul']['user'] == 'on') : ?>
-						<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#adduser"><i class="fa fa-plus"></i> Tambah User Baru</a>
-					<?php endif; ?>
+
 				</div>
 			</div>
 		</div>
@@ -20,9 +18,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 	<div class="card-header py-3">
-		<a href="<?php echo base_url('/home'); ?>">
-			<i class="fa fa-arrow-left"></i>&ensp;Kembali
-		</a>
+		<div class="d-flex justify-content-between">
+			<a href="<?php echo base_url('/home'); ?>">
+				<i class="bx bx-arrow-back"></i>&ensp;Kembali
+			</a>
+			<?php if (isset($_SESSION['akses_modul']['user']) && $_SESSION['akses_modul']['user'] == 'on') : ?>
+				<a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#adduser"><i class="fa fa-plus"></i> Tambah User Baru</a>
+			<?php endif; ?>
+		</div>
+
 	</div>
 
 	<div class="card-body">
@@ -38,9 +42,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header py-3">
 				<h4 class="modal-title">Tambah User</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<form id="fadduser" class="form-horizontal" role="form" method="post" action="<?php echo site_url("/admin/adduser"); ?>">
@@ -68,63 +70,37 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<input type="text" class="form-control" id="akses_klas" name="akses_klas" />
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="username">Hak Akses Modul</label>
-						<div class="">
-							<div class="">
-								<label for="modul1">
-									<input tabindex="5" type="checkbox" id="modul1" name="modul[entridata]">
-									Entri Data
-								</label>
-								<label for="modul2">
-									<input type="checkbox" id="modul2" name="modul[sirkulasi]">
-									Sirkulasi
-								</label>
-								<label for="modul3">
-									<input type="checkbox" id="modul3" name="modul[klasifikasi]">
-									Klasifikasi
-								</label>
-								<label for="modul4">
-									<input type="checkbox" id="modul4" name="modul[pencipta]">
-									Pencipta Arsip
-								</label>
-								<label for="modul5">
-									<input type="checkbox" id="modul5" name="modul[pengolah]">
-									Pengolah Arsip
-								</label>
-								<label for="modul6">
-									<input type="checkbox" id="modul6" name="modul[lokasi]">
-									Lokasi Arsip
-								</label>
-								<label for="modul7">
-									<input type="checkbox" id="modul7" name="modul[media]">
-									Media Arsip
-								</label>
-								<label for="modul8">
-									<input type="checkbox" id="modul8" name="modul[user]">
-									User
-								</label>
-								<label for="modul9">
-									<input type="checkbox" id="modul9" name="modul[import]">
-									Import Data
-								</label>
-							</div>
-						</div>
-					</div>
+
 					<div class="form-group">
 						<label class="control-label" for="tipe">Tipe</label>
 						<div class="">
-							<select id="tipe" name="tipe" class="form-control">
+							<select id="tipe" name="tipe" class="form-select">
 								<option value="admin">Admin</option>
 								<option value="operator">Operator</option>
 								<option value="user">User</option>
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="control-label" for="tipe">Akses Modul</label>
+						<div class="">
+							<select id="selectdua-add" name="add_modul" class="form-control" multiple="multiple" style="width: 100%">
+								<option id="emodul1_add" value="entridata">Entridata</option>
+								<option id="emodul2_add" value="sirkulasi">Sirkulasi</option>
+								<option id="emodul3_add" value="klasifikasi">Klasifikasi</option>
+								<option id="emodul4_add" value="pencipta">Pencipta</option>
+								<option id="emodul5_add" value="pengolah">Pengolah</option>
+								<option id="emodul6_add" value="lokasi">Lokasi</option>
+								<option id="emodul7_add" value="media">Media</option>
+								<option id="emodul8_add" value="user">User</option>
+								<option id="emodul9_add" value="import">Import</option>
+							</select>
+						</div>
+					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
 				<button type="button" class="btn btn-primary" id="addusergo">Simpan</button>
 			</div>
 		</div><!-- /.modal-content -->
@@ -266,7 +242,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<button type="button" id="edit_user" data-id="${row.cells[0].data}" class=" btn rounded-pill btn-icon btn-primary ">
                               <span class="tf-icons bx bx-pencil"></span>
                             </button>
-                            <button type="button" id="hapusUser" class="btn rounded-pill btn-icon btn-danger">
+                            <button type="button" id="hapusUser" data-id="${row.cells[0].data}" class="btn rounded-pill btn-icon btn-danger">
                               <span class="tf-icons bx bx-trash"></span>
                             </button>
 </div>`)
@@ -282,6 +258,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		$("#selectdua").select2({
 			placeholder: "Select a state",
 			dropdownParent: $('#edituser'),
+			tags: true
+
+		});
+		$("#selectdua-add").select2({
+			placeholder: "Select a state",
+			dropdownParent: $('#adduser'),
 			tags: true
 
 		});

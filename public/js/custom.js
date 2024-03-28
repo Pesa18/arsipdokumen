@@ -93,31 +93,52 @@ $(document).ready(function () {
 
 	/** Fungsi-fungsi terkait dengan data master user aplikasi arsip */
 	function reloaduser() {
-		$.ajax({
-			type: "POST",
-			url: site_url + "/admin/reloaduser/",
-			cache: false,
-			success: function (html) {
-				$("#divtabeluser").html(html);
-			},
-		});
+		window.location.reload();
 	}
 	if ($("#divtabeluser").length > 0) {
 		// reloaduser();
 	}
-	$("#divtabeluser").on("click", ".deluser", function () {
-		var d = $(this).attr("id");
-		$("#deliduser").val(d);
+	$(document).on("click", "#hapusUser", function () {
+		let id = $(this).attr("data-id");
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete it!",
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: site_url + "admin/deluser",
+					data: { id: id },
+					dataType: "json",
+					success: function (response) {
+						if (response.status == "success") {
+							deluser();
+						}
+					},
+				});
+			}
+		});
 	});
 
-	$("#delusergo").on("click", function () {
-		$("#fdeluser").submit();
-	});
 	$("#fdeluser").ajaxForm({ success: deluser });
 	function deluser() {
 		alert("Data telah sukses dihapus");
-		reloaduser();
-		$("#deluser").modal("hide");
+		Swal.fire({
+			title: "Deleted!",
+			text: "Your file has been deleted.",
+			icon: "success",
+			showConfirmButton: false,
+			timer: 1000,
+		}).then((result) => {
+			if (result.dismiss == "timer") {
+				reloaduser();
+			}
+		});
 	}
 	$("#editusergo").on("click", function () {
 		let dataSelect = $("#selectdua").val();
@@ -153,7 +174,6 @@ $(document).ready(function () {
 			}
 		}
 		fd.delete("test");
-
 		$.ajax({
 			type: "POST",
 			url: site_url + "/admin/eduser",
@@ -162,10 +182,8 @@ $(document).ready(function () {
 			contentType: false,
 			dataType: "json",
 			success: function (response) {
-
-				console.log(response);
 				if (response.status) {
-					eduser()
+					eduser();
 				}
 			},
 		});
@@ -186,11 +204,53 @@ $(document).ready(function () {
 			data: "username=" + d,
 			cache: false,
 			success: function (ahtml) {
-				console.log(ahtml);
-
 				html = jQuery.parseJSON(ahtml);
 				if (html.msg == "ok") {
-					$("#fadduser").submit();
+					let dataSelect = $("#selectdua-add").val();
+					let form = $("#fadduser")[0];
+					var fd = new FormData(form);
+					for (let index = 0; index < dataSelect.length; index++) {
+						if (dataSelect[index] == "entridata") {
+							fd.append("modul[entridata]", "on");
+						}
+						if (dataSelect[index] == "sirkulasi") {
+							fd.append("modul[sirkulasi]", "on");
+						}
+						if (dataSelect[index] == "klasifikasi") {
+							fd.append("modul[klasifikasi]", "on");
+						}
+						if (dataSelect[index] == "pencipta") {
+							fd.append("modul[pencipta]", "on");
+						}
+						if (dataSelect[index] == "pengolah") {
+							fd.append("modul[pengolah]", "on");
+						}
+						if (dataSelect[index] == "lokasi") {
+							fd.append("modul[lokasi]", "on");
+						}
+						if (dataSelect[index] == "media") {
+							fd.append("modul[media]", "on");
+						}
+						if (dataSelect[index] == "user") {
+							fd.append("modul[user]", "on");
+						}
+						if (dataSelect[index] == "import") {
+							fd.append("modul[import]", "on");
+						}
+					}
+					fd.delete("add_modul");
+
+					$.ajax({
+						type: "POST",
+						url: site_url + "/admin/adduser",
+						data: fd,
+						processData: false,
+						contentType: false,
+						dataType: "json",
+						success: function (response) {
+							adduser(response);
+						},
+					});
 				} else {
 					alert("username sudah terpakai!");
 				}
@@ -199,7 +259,7 @@ $(document).ready(function () {
 	});
 	$("#fadduser").ajaxForm({ success: adduser });
 	function adduser(responseText, statusText, xhr, $form) {
-		var jsonData = JSON.parse(responseText);
+		var jsonData = responseText;
 		if (jsonData.status == "error" && jsonData.pesan == "PASSWORD_UNMATCH") {
 			alert(
 				"Password yang anda tuliskan tidak sama dengan konfirmasi password.\nHarap periksa penggunaan huruf besar kecil."
