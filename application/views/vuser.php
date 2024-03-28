@@ -234,7 +234,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				// Mengembalikan HTML yang dihasilkan
 				return gridjs.html(`<div class="col "> ${html}</div>`);
 			}
-		}, {s
+		}, {
 			name: 'Aksi',
 			width: "7%",
 			formatter: (_, row) => {
