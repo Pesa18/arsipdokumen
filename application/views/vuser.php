@@ -234,15 +234,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				// Mengembalikan HTML yang dihasilkan
 				return gridjs.html(`<div class="col "> ${html}</div>`);
 			}
-		}, {
+		}, {s
 			name: 'Aksi',
 			width: "7%",
 			formatter: (_, row) => {
 				return gridjs.html(`<div class=" col d-flex justify-content-around">
-			<button type="button" id="edit_user" data-id="${row.cells[0].data}" class=" btn rounded-pill btn-icon btn-primary ">
+			<button type="button" id="edit_user" data-id="${row.cells[0].data.id}" class=" btn rounded-pill btn-icon btn-primary ">
                               <span class="tf-icons bx bx-pencil"></span>
                             </button>
-                            <button type="button" id="hapusUser" data-id="${row.cells[0].data}" class="btn rounded-pill btn-icon btn-danger">
+                            <button type="button" id="hapusUser" data-id="${row.cells[0].data.id}" class="btn rounded-pill btn-icon btn-danger">
                               <span class="tf-icons bx bx-trash"></span>
                             </button>
 </div>`)
