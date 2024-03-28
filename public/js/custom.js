@@ -279,7 +279,7 @@ $(document).ready(function () {
 		var d = $(this).attr("data-id");
 		$.ajax({
 			type: "POST",
-			url: site_url + "/admin/auser/",
+			url: site_url + "admin/auser/",
 			data: { id: d },
 			cache: false,
 			success: function (ahtml) {
