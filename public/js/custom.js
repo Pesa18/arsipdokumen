@@ -162,7 +162,9 @@ $(document).ready(function () {
 			contentType: false,
 			dataType: "json",
 			success: function (response) {
-				console.log(response);
+				if (response.status) {
+					eduser()
+				}
 			},
 		});
 	});
